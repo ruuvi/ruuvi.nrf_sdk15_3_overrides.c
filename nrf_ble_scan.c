@@ -1007,13 +1007,16 @@ static void nrf_ble_scan_on_adv_report(nrf_ble_scan_t           const * const p_
 
     }
 
+#else // NRF_BLE_SCAN_FILTER_ENABLE
+    scan_evt.scan_evt_id        = NRF_BLE_SCAN_EVT_NOT_FOUND;
+    scan_evt.params.p_not_found = p_adv_report;
+#endif
+
     // If the event handler is not NULL, notify the main application.
     if (p_scan_ctx->evt_handler != NULL)
     {
         p_scan_ctx->evt_handler(&scan_evt);
     }
-
-#endif // NRF_BLE_SCAN_FILTER_ENABLE
 
     // Resume the scanning.
     UNUSED_RETURN_VALUE(sd_ble_gap_scan_start(NULL, &p_scan_ctx->scan_buffer));
