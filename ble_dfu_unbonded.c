@@ -145,7 +145,7 @@ uint32_t ble_dfu_buttonless_backend_init(ble_dfu_buttonless_t * p_dfu)
 uint32_t ble_dfu_buttonless_async_svci_init(void)
 {
     uint32_t ret_val;
-
+    CRITICAL_REGION_ENTER();
     ret_val = nrf_dfu_svci_vector_table_set();
     VERIFY_SUCCESS(ret_val);
 
@@ -153,7 +153,7 @@ uint32_t ble_dfu_buttonless_async_svci_init(void)
     VERIFY_SUCCESS(ret_val);
 
     ret_val = nrf_dfu_svci_vector_table_unset();
-
+    CRITICAL_REGION_EXIT();
     return ret_val;
 }
 
