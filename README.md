@@ -12,7 +12,7 @@ MIT, check LICENSE
 ## nrfx_wdt.c
  - Fix watchdog overflow on multiply by 2^15 / 1000 conversion
  
- ## ble_dfu*
+## ble_dfu*
   - Conditionally compile modules
   - ble_dfu_unbonded.c: Add critical section to bootloader initialization to avoid interrupts being misdirected.
   
