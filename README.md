@@ -18,3 +18,6 @@ MIT, check LICENSE
   
 ## nrf_ble_scan.c
   - Pass scan data with event_id NRF_BLE_SCAN_EVT_NOT_FOUND to application if no filters are enabled
+
+## t2t_lib, t4t_lib
+  - Use NFC binaries from nRF5 SDK 17.2
