@@ -147,12 +147,16 @@ uint32_t ble_dfu_buttonless_async_svci_init(void)
     uint32_t ret_val;
     CRITICAL_REGION_ENTER();
     ret_val = nrf_dfu_svci_vector_table_set();
-    VERIFY_SUCCESS(ret_val);
 
-    ret_val = nrf_dfu_set_adv_name_init();
-    VERIFY_SUCCESS(ret_val);
+    if(NRF_SUCCESS == ret_val)
+    {
+        ret_val = nrf_dfu_set_adv_name_init();
 
-    ret_val = nrf_dfu_svci_vector_table_unset();
+        if(NRF_SUCCESS == ret_val)
+        {
+            ret_val = nrf_dfu_svci_vector_table_unset();
+        }
+    }
     CRITICAL_REGION_EXIT();
     return ret_val;
 }
